@@ -35,6 +35,7 @@ Build the project
 $ git clone https://github.com/opeolluwa/minifier #clone the project
 $ cd minifier #navigate to the project root directory
 $ npm install #install project dependencies
+$ sequelize db:create #create database tables
 $ npm run dev # run the project in development mode
 ```
 
