@@ -1,0 +1,3 @@
+.crash/*
+ node_modules/*
+.env 
