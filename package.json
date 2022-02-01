@@ -1,0 +1,27 @@
+{
+  "name": "minifier",
+  "version": "1.0.0",
+  "description": "A url minfier built in NodeJs ExpressJS and MySQl using Sequelsize ORM",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opeolluwa/minifier.git"
+  },
+  "keywords": [
+    "URL",
+    "Shortener",
+    "Node",
+    "Express",
+    "MySQL",
+    "Sequelize"
+  ],
+  "author": "Adeoye Adefemi Opeoluwa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/opeolluwa/minifier/issues"
+  },
+  "homepage": "https://github.com/opeolluwa/minifier#readme"
+}
