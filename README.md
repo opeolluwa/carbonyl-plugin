@@ -4,10 +4,6 @@ A simple API that will return a pair of randomly generated UUID.
 
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
-## Demo
-
-Checkout a live [demo](https://minifier.mdbgo.io)
-
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
@@ -31,7 +27,7 @@ To run this project, you will need to add the following environment variables to
 | :-------- | :------- | :------------------------------ | --------------------------- |
 | `url`     | `string` | **Required**. The URL to minify | https://the-ghost-boxes.com |
 
-## Local Test
+## Development
 
 Build the project
 
@@ -39,12 +35,15 @@ Build the project
 $ git clone https://github.com/opeolluwa/minifier #clone the project
 $ cd minifier #navigate to the project root directory
 $ npm install #install project dependencies
-$ npm run dev # run the project in development mode 
+$ npm run dev # run the project in development mode
 ```
+
+## Demo
+
+Checkout a live [demo](https://minifier.mdbgo.io)
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
 ## Usage/Examples
-
