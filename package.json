@@ -4,7 +4,9 @@
   "description": "A url minifier built in NodeJs ExpressJS and MySQl using Sequelize ORM",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "start": "node index.js",
+    "deploy" :"git push heroku",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
