@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
   };
   MinifiedUrl.init({
     longUrl: DataTypes.STRING,
-    shortenedUrl: DataTypes.STRING
+    shortenedUrlId: DataTypes.STRING
   }, {
     sequelize,
+    // timestamps:false,
     modelName: 'MinifiedUrl',
     tableName: "minified_links",
-    timeStamps: false
   });
   return MinifiedUrl;
 };
