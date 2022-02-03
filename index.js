@@ -1,20 +1,17 @@
-const { sequelize, } = require("./models");
+//import  sequelize instance, for debugging alone
+const { sequelize } = require("./models");
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000
 
+app.use(express.json())
 
 // const match = require("./routes/match");
-// const minify = require("./routes/minify");
-
+const minify = require("./routes/minify");
 
 // app.use("/api", match);
-// app.use("api/", minify);
+app.use("/api", minify);
 
-
-app.get("api", (req, res) => {
-    res.send("ignition started");
-})
 
 
 app.listen(PORT, async () => {
