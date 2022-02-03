@@ -7,14 +7,14 @@ async function minify(req, res) {
 
     //assign unique id to the url and store it to database
     try {
-        
-        const uuid = await nanoid(8)
+        const shortenedUrlId = await nanoid(8)
         const longUrl = url;
-        const shortenedUrl = 'https://minifier.mdbgo.io/' + uuid
-        await MinifiedUrl.create({ longUrl, shortenedUrl })
+        const baseUrl = 'https://minifier.mdbgo.io/';
+        const minifiedLink = baseUrl + shortenedUrlId;
+        await MinifiedUrl.create({ longUrl, shortenedUrlId })
 
         //send feedback to client
-        res.send({ error: false, uuid, url })
+        res.send({ error: false, minifiedLink })
     } catch (error) {
         res.send({ error: true, message: "An internal error occurred, please try again after some time" })
     }
