@@ -1,8 +1,6 @@
 # Minifier
 
-A simple API that will return a pair of randomly generated UUID.
-
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+A URL minifier built in NodeJs ExpressJS and MySQl using Sequelize ORM
 
 ## Environment Variables
 
@@ -17,15 +15,27 @@ To run this project, you will need to add the following environment variables to
 
 ## API Reference
 
-#### Minify a link
+#### 1. Minify a link
 
 ```http
-  POST /api/minify
+ POST /api/minify
 ```
 
-| Parameter | Type     | Description                     | Example                     |
-| :-------- | :------- | :------------------------------ | --------------------------- |
-| `url`     | `string` | **Required**. The URL to minify | https://the-ghost-boxes.com |
+| **Parameter** | **Type** | **Description**                 | **Example**                 | Output                 |
+| :------------ | :------- | :------------------------------ | --------------------------- | ---------------------- |
+| `url`         | `string` | **Required**. The URL to minify | https://the-ghost-boxes.com | https:/min.rs/txjDBJkg |
+
+### 2. Set Custom Id on a minified link
+
+This endpoint accept a keyword and the minified link and set the custom keyword on the link
+
+```http
+  POST /api/custom-id
+```
+
+| Parameter                 | Type               | Description                             | Example                                                        | Output                   |
+| :------------------------ | :----------------- | :-------------------------------------- | -------------------------------------------------------------- | ------------------------ |
+| `keyword`, `minified url` | `string`, `string` | set custom keyword on the minified link | keyword => invitation, minified link => https:/min.rs/txjDBJkg | https:/min.rs/invitation |
 
 ## Development
 
@@ -39,12 +49,10 @@ $ sequelize db:create #create database tables
 $ npm run dev # run the project in development mode
 ```
 
-## Demo
-
-Checkout a live [demo](https://minifier.mdbgo.io)
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-## Usage/Examples
+## Demo
+
+Checkout a live [demo](https://minifier.mdbgo.io)
