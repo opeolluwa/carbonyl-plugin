@@ -1,7 +1,7 @@
 const express = require('express');
+const { match } = require('../controllers/match');
 const router = express.Router()
 
-
-router.redirect("/:id", match)
+router.get("/:id", match)
 
 module.exports = router;
