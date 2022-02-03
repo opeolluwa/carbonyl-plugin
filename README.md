@@ -49,6 +49,14 @@ $ sequelize db:create #create database tables
 $ npm run dev # run the project in development mode
 ```
 
+_if bash is installed_
+
+```bash
+$ git clone https://github.com/opeolluwa/minifier #clone the project
+$ cd minifier #navigate to the project root directory
+$ npm run init
+```
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)

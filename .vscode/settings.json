@@ -1,0 +1,9 @@
+{
+  "files.exclude": {
+    "node_modules/*": true,
+    "**/.crash": true,
+    "**/node_modules": true,
+    "**/.env ": true
+  },
+  "cSpell.words": ["urlid"]
+}
