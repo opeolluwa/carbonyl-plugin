@@ -6,11 +6,13 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
-// const match = require("./routes/match");
+const match = require("./routes/match");
 const minify = require("./routes/minify");
+const customId = require("./routes/custom-id");
 
-// app.use("/api", match);
+app.use("/", match);
 app.use("/api", minify);
+app.use("/api", customId);
 
 
 
