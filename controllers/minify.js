@@ -2,10 +2,10 @@ const { nanoid } = require('nanoid/async'); //nanoid
 const { MinifiedUrl } = require('../models');
 
 async function minify(req, res) {
-    //get rl from payload
+    //Get URL from Payload
     const { url } = req.body;
 
-    //assign unique id to the url and store it to database
+    //Assign Unique Id to the URL and Store It to Database
     try {
         const shortenedUrlId = await nanoid(8)
         const longUrl = url;
@@ -13,13 +13,12 @@ async function minify(req, res) {
         const minifiedLink = baseUrl + shortenedUrlId;
         await MinifiedUrl.create({ longUrl, shortenedUrlId })
 
-        //send feedback to client
+        //Send Feedback to Client
         res.send({ error: false, minifiedLink })
     } catch (error) {
         res.send({ error: true, message: "An internal error occurred, please try again after some time" })
     }
 }
 
-
-
+//export module
 module.exports = { minify }
