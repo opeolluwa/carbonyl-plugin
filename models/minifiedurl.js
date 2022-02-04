@@ -13,8 +13,16 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   MinifiedUrl.init({
-    longUrl: DataTypes.STRING,
-    shortenedUrlId: DataTypes.STRING
+    //the actual url
+    longUrl: {
+      type: DataTypes.TEXT
+    },
+    //identity assigned to the minified url
+    shortenedUrlId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    }
   }, {
     sequelize,
     // timestamps:false,
