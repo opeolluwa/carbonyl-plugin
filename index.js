@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
+app.get("/", (req, res) => {
+    res.send("hello /glacial-sands-27274")
+})
 //import all routes
 const match = require("./routes/match");
 const minify = require("./routes/minify");
