@@ -63,4 +63,4 @@ $ npm run init
 
 ## Demo
 
-Checkout a live [demo](https://minifier.mdbgo.io)
+Checkout a live [demo](http://bytes-33.herokuapp.com/)
