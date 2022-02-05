@@ -9,7 +9,7 @@ async function minify(req, res) {
     try {
         const shortenedUrlId = await nanoid(8)
         const longUrl = url;
-        const baseUrl = 'https://misty.mdbgo.io/';
+        const baseUrl = 'https://bytes-33.herokuapp.com/';
         const minifiedLink = baseUrl + shortenedUrlId;
         await MinifiedUrl.create({ longUrl, shortenedUrlId })
 
