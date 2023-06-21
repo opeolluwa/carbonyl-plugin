@@ -5,5 +5,12 @@
     "**/node_modules": true,
     "**/.env ": true
   },
-  "cSpell.words": ["urlid"]
+  "cSpell.words": [
+    "urlid"
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#043524",
+    "titleBar.activeBackground": "#054A32",
+    "titleBar.activeForeground": "#EBFEF7"
+  }
 }
