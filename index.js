@@ -30,9 +30,11 @@ const MinifiedUrlSchema = new mongoose.Schema({
 // the database model
 const MinifiedUrlModel = mongoose.model('minifiedUrl', MinifiedUrlSchema);
 
-//controllers
-app.get("/health", (req, res) => {
-    res.send("healthy")
+//health check
+app.get("/", (req, res) => {
+    res.json({
+        message: "ok"
+    })
 });
 
 //minify
@@ -130,7 +132,6 @@ app.put('/api/v2/minify', async (req, res) => {
         if (!minifiedUrl) {
             return res.status(404).json({
                 error: "url not found"
-
             })
         }
         minifiedUrl.originalUrl = url
@@ -144,36 +145,13 @@ app.put('/api/v2/minify', async (req, res) => {
     }
 })
 
-// delete the url
-app.delete('/api/v2/minify', async (req, res) => {
-    const {
-        id
-    } = req.body
-    try {
-        const minifiedUrl = await MinifiedUrlModel.findOne({
-            shortenedUrlKey: id.trim()
-        })
-        if (!minifiedUrl) {
-            return res.status(404).json({
-                error: "url not found"
-            })
-        }
-        minifiedUrl.delete()
-        return res.json({
-            message: "success"
-        });
-    } catch (err) {
-        return res.status(500).json({
-            error: err
-        })
-    }
-})
+
 
 // set the shortenedUrlKEy
 app.put('/api/v2/minify/set', async (req, res) => {
     const {
         id,
-        shortenedUrlKey
+        customId
     } = req.body
     try {
         const minifiedUrl = await MinifiedUrlModel.findOne({
@@ -184,7 +162,7 @@ app.put('/api/v2/minify/set', async (req, res) => {
                 error: "url not found"
             })
         }
-        minifiedUrl.shortenedUrlKey = shortenedUrlKey
+        minifiedUrl.shortenedUrlKey = customId
         minifiedUrl.save()
         return res.json(minifiedUrl);
     } catch (err) {
@@ -192,6 +170,33 @@ app.put('/api/v2/minify/set', async (req, res) => {
             error: err
         })
 
+    }
+});
+
+// delete the url
+app.delete('/api/v2/minify', async (req, res) => {
+    const {
+        id
+    } = req.query
+    try {
+        const minifiedUrl = await MinifiedUrlModel.findOne({
+            shortenedUrlKey: id.trim()
+        })
+        if (!minifiedUrl) {
+            return res.status(404).json({
+                error: "url not found"
+            })
+        }
+        await MinifiedUrlModel.deleteOne({
+            shortenedUrlKey: id.trim()
+        })
+        return res.json({
+            message: "success"
+        });
+    } catch (err) {
+        return res.status(500).json({
+            error: err.message
+        })
     }
 })
 app.listen(PORT, async () => {
