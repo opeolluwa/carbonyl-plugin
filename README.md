@@ -1,4 +1,4 @@
-# Otter
+# Carbonyl
 
 Fast and seamless URL minifier API
 
