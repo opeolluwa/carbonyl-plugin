@@ -200,11 +200,10 @@ app.delete('/api/v2/minify', async (req, res) => {
     }
 })
 app.listen(PORT, async () => {
-    mongoose.connect(DATABASE_URL).then((result, err) => {
-        if (err) {
-            console.log(err)
-        }
+    mongoose.connect(DATABASE_URL).then((result) => {
         console.log("connected to mongodb")
+    }).catch((error) => {
+        console.log(error.message)
     })
     console.log("ignition started on port:" + PORT);
 })
