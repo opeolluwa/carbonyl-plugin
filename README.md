@@ -1,66 +1,62 @@
-# Minifier
+# Otter
 
-A URL minifier built in NodeJs ExpressJS and MySQl using Sequelize ORM
+Fast and seamless URL minifier API
 
-## Environment Variables
+## Table of Contents
 
-To run this project, you will need to add the following environment variables to your .env file
+- [Description](#description)
+- [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Support](#support)
+- [License](#license)
 
-| **ENVIRONMENT VARIABLE** | **DESCRIPTION**              | **EXAMPLE**              |
-| ------------------------ | ---------------------------- | ------------------------ |
-| `DB_ACCESS_KEY`          | database connection password | password                 |
-| `DB_SCHEMA`              | database name                | minifier                 |
-| `DB_USER`                | database user                | root                     |
-| `DB_HOST`                | database host                | mysql.example-server.com |
+## Description
 
-## API Reference
+## Getting Started
 
-#### 1. Minify a link
+To host the application on your servers, fork the project, afterwards, clone it to your machine and install the dependencies
 
-```http
- POST /api/minify
+```sh
+git clone https://github.com/<your-github-username>/otter
+cd otter
+npm install
 ```
 
-| **Parameter** | **Type** | **Description**                 | **Example**                 | Output                 |
-| :------------ | :------- | :------------------------------ | --------------------------- | ---------------------- |
-| `url`         | `string` | **Required**. The URL to minify | https://the-ghost-boxes.com | https:/min.rs/txjDBJkg |
+## Prerequisites
 
-### 2. Set Custom Id on a minified link
+The following are required to run the project locally
 
-This endpoint accept a keyword and the minified link and set the custom keyword on the link
+- [Node.js](https://noddejs.org) - Cross platform JavaScript run time environment
+- [npm](https://npmjs.com) - JavaScript package manager
+- [MongoDB](https://mongoDB.com) - NoSQL database
 
-```http
-  POST /api/custom-id
-```
+## Integration
 
-| Parameter                 | Type               | Description                             | Example                                                        | Output                   |
-| :------------------------ | :----------------- | :-------------------------------------- | -------------------------------------------------------------- | ------------------------ |
-| `keyword`, `minified url` | `string`, `string` | set custom keyword on the minified link | keyword => invitation, minified link => https:/min.rs/txjDBJkg | https:/min.rs/invitation |
+To use the API in your application, see the documentation, only the following languages are supported
 
-## Development
+- [x] Bash
+- [x] C
+- [x] C#
+- [x] Clojure
+- [x] Go
+- [x] JavaScript
+- [x] Kotlin
+- [x] Node.js
+- [x] PHP
+- [x] Python
+- [x] Ruby
+- [ ] Rust
+- [ ] V
 
-Build the project
+## Usage
 
-```bash
-$ git clone https://github.com/opeolluwa/minifier #clone the project
-$ cd minifier #navigate to the project root directory
-$ npm install #install project dependencies
-$ sequelize db:create #create database tables
-$ npm run dev # run the project in development mode
-```
+Instructions on how to use the project, including any command-line options and examples.
 
-_if bash is installed_
-
-```bash
-$ git clone https://github.com/opeolluwa/minifier #clone the project
-$ cd minifier #navigate to the project root directory
-$ npm run init
-```
+## Support
+ 
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
-
-## Demo
-
-Checkout a live [demo](http://bytes-33.herokuapp.com/)
+This project is proprietary software owned by [Adeoye Adefemi](https://gthub.com/opeolluwa) and distributed inder the [MIT License](./LICENSE)
