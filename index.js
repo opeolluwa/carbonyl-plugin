@@ -4,11 +4,16 @@ const cors = require('cors');
 const {
     nanoid
 } = require('nanoid');
+const dotenv = require('dotenv');
+
+dotenv.config();
+const DATABASE_URL = process.env.DATABASE_URL
+const PORT = process.env.PORT || 3030
+const BASE_URL = process.env.BASE_URL || "https://carbonyl.onrender.com/"
 
 // app settings
 const app = express();
-const PORT = process.env.PORT || 3030
-const BASE_URL = process.env.BASE_URL || "https://carbonyl.onrender.com/"
+
 //middleware
 app.use(express.json())
 app.use(cors())
@@ -190,7 +195,7 @@ app.put('/api/v2/minify/set', async (req, res) => {
     }
 })
 app.listen(PORT, async () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/minifier').then((result, err) => {
+    mongoose.connect(DATABASE_URL).then((result, err) => {
         if (err) {
             console.log(err)
         }
