@@ -4,11 +4,16 @@ const cors = require('cors');
 const {
     nanoid
 } = require('nanoid');
+const dotenv = require('dotenv');
+
+dotenv.config();
+const DATABASE_URL = process.env.DATABASE_URL
+const PORT = process.env.PORT || 3030
+const BASE_URL = process.env.BASE_URL || "https://carbonyl.onrender.com/"
 
 // app settings
 const app = express();
-const PORT = process.env.PORT || 3030
-const BASE_URL = process.env.BASE_URL || "https://carbonyl.onrender.com/"
+
 //middleware
 app.use(express.json())
 app.use(cors())
@@ -25,9 +30,11 @@ const MinifiedUrlSchema = new mongoose.Schema({
 // the database model
 const MinifiedUrlModel = mongoose.model('minifiedUrl', MinifiedUrlSchema);
 
-//controllers
-app.get("/health", (req, res) => {
-    res.send("healthy")
+//health check
+app.get("/", (req, res) => {
+    res.json({
+        message: "ok"
+    })
 });
 
 //minify
@@ -95,6 +102,7 @@ app.get('/api/v2/minify', async (req, res) => {
         id
     } = req.query
     try {
+
         const minifiedUrl = await MinifiedUrlModel.findOne({
             shortenedUrlKey: id.trim()
         })
@@ -111,8 +119,88 @@ app.get('/api/v2/minify', async (req, res) => {
     }
 })
 
+// update the original url
+app.put('/api/v2/minify', async (req, res) => {
+    const {
+        id,
+        url
+    } = req.body
+    try {
+        const minifiedUrl = await MinifiedUrlModel.findOne({
+            shortenedUrlKey: id.trim()
+        })
+        if (!minifiedUrl) {
+            return res.status(404).json({
+                error: "url not found"
+            })
+        }
+        minifiedUrl.originalUrl = url
+        minifiedUrl.save()
+        return res.json(minifiedUrl);
+    } catch (err) {
+        return res.status(500).json({
+            error: err
+        })
+
+    }
+})
+
+
+
+// set the shortenedUrlKEy
+app.put('/api/v2/minify/set', async (req, res) => {
+    const {
+        id,
+        customId
+    } = req.body
+    try {
+        const minifiedUrl = await MinifiedUrlModel.findOne({
+            shortenedUrlKey: id.trim()
+        })
+        if (!minifiedUrl) {
+            return res.status(404).json({
+                error: "url not found"
+            })
+        }
+        minifiedUrl.shortenedUrlKey = customId
+        minifiedUrl.save()
+        return res.json(minifiedUrl);
+    } catch (err) {
+        return res.status(500).json({
+            error: err
+        })
+
+    }
+});
+
+// delete the url
+app.delete('/api/v2/minify', async (req, res) => {
+    const {
+        id
+    } = req.query
+    try {
+        const minifiedUrl = await MinifiedUrlModel.findOne({
+            shortenedUrlKey: id.trim()
+        })
+        if (!minifiedUrl) {
+            return res.status(404).json({
+                error: "url not found"
+            })
+        }
+        await MinifiedUrlModel.deleteOne({
+            shortenedUrlKey: id.trim()
+        })
+        return res.json({
+            message: "success"
+        });
+    } catch (err) {
+        return res.status(500).json({
+            error: err.message
+        })
+    }
+})
 app.listen(PORT, async () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/minifier').then((result, err) => {
+    mongoose.connect(DATABASE_URL).then((result, err) => {
         if (err) {
             console.log(err)
         }
