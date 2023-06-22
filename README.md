@@ -1,4 +1,4 @@
-# Otter
+# Carbonyl
 
 Fast and seamless URL minifier API
 
@@ -34,7 +34,21 @@ The following are required to run the project locally
 
 ## Integration
 
-To use the API in your application, see the documentation, only the following languages are supported
+Get started with cURl
+
+```sh
+curl  -X POST \
+ 'https://carbonyl.conrender.com/api/v2/minify' \
+ --header 'Accept: */*' \
+ --header 'Content-Type: application/json' \
+ --data-raw '{
+ "url":"<url-goes-here>"
+}'
+```
+
+### Language Integration
+
+see the [documentation](https://opeolluwa/github.io/carbonyl) for the following language integration
 
 - [x] Bash
 - [x] C
@@ -47,15 +61,8 @@ To use the API in your application, see the documentation, only the following la
 - [x] PHP
 - [x] Python
 - [x] Ruby
-- [ ] Rust
-- [ ] V
-
-## Usage
-
-Instructions on how to use the project, including any command-line options and examples.
 
 ## Support
- 
 
 ## License
 

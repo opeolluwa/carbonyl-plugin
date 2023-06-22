@@ -1,18 +1,16 @@
 {
-  "name": "minifier",
-  "version": "1.0.0",
-  "description": "A url minifier built in NodeJs ExpressJS and MySQl using Sequelize ORM",
+  "name": "carbonyl",
+  "version": "2.0.0",
+  "description": "A url carbonyl",
+  "author": "Adeoye adefemi <adefemiadeoye@yahoo.com>",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "deploy": "git push heroku",
-    "dev": "nodemon index.js",
-    "test": "node .crash",
-    "init": "bash init.sh"
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/opeolluwa/minifier.git"
+    "url": "git+https://github.com/opeolluwa/carbonyl.git"
   },
   "keywords": [
     "URL",
@@ -22,12 +20,11 @@
     "MySQL",
     "Sequelize"
   ],
-  "author": "Adeoye Adefemi Opeoluwa",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/opeolluwa/minifier/issues"
+    "url": "https://github.com/opeolluwa/carbonyl/issues"
   },
-  "homepage": "https://github.com/opeolluwa/minifier#readme",
+  "homepage": "https://github.com/opeolluwa/carbonyl#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^15.0.0",
