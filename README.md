@@ -48,7 +48,7 @@ curl  -X POST \
 
 ### Language Integration
 
-see the [documentation](https://opeolluwa/github.io/carbonyl) for the following language integration
+see the [documentation](https://opeolluwa.github.io/carbonyl) for the following language integration
 
 - [x] Bash
 - [x] C
