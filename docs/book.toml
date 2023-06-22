@@ -3,4 +3,9 @@ authors = ["Adeoye Adefemi"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Otter API documentation"
+title = "Carbonyl API documentation"
+
+[output.html]
+default-theme = "light"
+git-repository-icon = "fa-github"
+git-repository-url = "https://github.com/opeolluwa/raccoon"
