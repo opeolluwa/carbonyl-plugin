@@ -164,7 +164,31 @@ app.delete('/api/v2/minify', async (req, res) => {
     }
 })
 
+// set the shortenedUrlKEy
+app.put('/api/v2/minify/set', async (req, res) => {
+    const {
+        id,
+        shortenedUrlKey
+    } = req.body
+    try {
+        const minifiedUrl = await MinifiedUrlModel.findOne({
+            shortenedUrlKey: id.trim()
+        })
+        if (!minifiedUrl) {
+            return res.status(404).json({
+                error: "url not found"
+            })
+        }
+        minifiedUrl.shortenedUrlKey = shortenedUrlKey
+        minifiedUrl.save()
+        return res.json(minifiedUrl);
+    } catch (err) {
+        return res.status(500).json({
+            error: err
+        })
 
+    }
+})
 app.listen(PORT, async () => {
     mongoose.connect('mongodb://127.0.0.1:27017/minifier').then((result, err) => {
         if (err) {
