@@ -1,0 +1,560 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Carbonyl API documentation</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introcuction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="language.html"><strong aria-hidden="true">2.</strong> Language Supported</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="curl/curl.html"><strong aria-hidden="true">2.1.</strong> cURL</a></li><li class="chapter-item expanded "><a href="c/c_lang.html"><strong aria-hidden="true">2.2.</strong> C lang</a></li><li class="chapter-item expanded "><a href="c_sharp/c_sharp.html"><strong aria-hidden="true">2.3.</strong> C#</a></li><li class="chapter-item expanded "><a href="clojure/clojure.html"><strong aria-hidden="true">2.4.</strong> Clojure</a></li><li class="chapter-item expanded "><a href="go/go.html"><strong aria-hidden="true">2.5.</strong> Go lang</a></li><li class="chapter-item expanded "><a href="js/js.html"><strong aria-hidden="true">2.6.</strong> JavaScript</a></li><li class="chapter-item expanded "><a href="ktx/kotlin.html"><strong aria-hidden="true">2.7.</strong> Kotlin</a></li><li class="chapter-item expanded "><a href="nodejs/node.html"><strong aria-hidden="true">2.8.</strong> Node.js</a></li><li class="chapter-item expanded "><a href="php/php.html"><strong aria-hidden="true">2.9.</strong> PHP</a></li><li class="chapter-item expanded "><a href="py/python.html"><strong aria-hidden="true">2.10.</strong> Python</a></li><li class="chapter-item expanded "><a href="ruby/ruby.html"><strong aria-hidden="true">2.11.</strong> Ruby</a></li><li class="chapter-item expanded "><a href="rust/rust.html"><strong aria-hidden="true">2.12.</strong> Rust</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Carbonyl API documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/opeolluwa/carbonyl" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="carbonyl-url-minifier-api"><a class="header" href="#carbonyl-url-minifier-api">Carbonyl URL Minifier API</a></h1>
+<p>Carbonyl is a powerful and user-friendly URL minifier API that allows developers to easily shorten and simplify long, complex URLs. With Carbonyl, you can transform lengthy URLs into concise and shareable links, making them more manageable and aesthetically pleasing.</p>
+<p>Whether you're building a web application, creating a marketing campaign, or simply looking to enhance user experience, Carbonyl provides a seamless solution for URL minification. By reducing the length of URLs, you can optimize your web content, improve readability, and enhance the overall usability of your applications.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Easy Integration</strong>: Carbonyl offers a straightforward API that can be easily integrated into your existing applications or services, allowing you to quickly implement URL minification functionality.</li>
+<li><strong>Customizable URLs</strong>: Customize the shortened URLs generated by Carbonyl to align with your branding or campaign needs. Add your own domain or choose from various options available.</li>
+<li><strong>Analytics and Reporting</strong>: Gain valuable insights into the performance of your shortened URLs with Carbonyl's built-in analytics and reporting features. Track clicks, engagement metrics, and more.</li>
+<li><strong>Security and Reliability</strong>: Carbonyl ensures the security and integrity of your URLs with robust encryption algorithms. You can rely on the API to consistently deliver reliable and accurate results.</li>
+</ul>
+<p><strong>Getting Started:</strong>
+To begin using the Carbonyl URL Minifier API, simply sign up for an account and obtain your unique API key. With the API key in hand, you can make HTTP requests to the Carbonyl API endpoint, passing the desired URL to be shortened. The API will swiftly generate a minified URL that you can utilize within your applications.</p>
+<p>Start optimizing your URLs today with Carbonyl and unlock a world of simplicity and efficiency. Visit our <a href="https://opeolluwa.github.io/carbonyl">documentation</a> to explore the comprehensive API reference and get started with URL minification.</p>
+<!--  -->
+<!-- *Note: Carbonyl is a free service with various pricing plans available to cater to different usage requirements. Visit our website for detailed pricing information.* --><div style="break-before: page; page-break-before: always;"></div><h1 id="language-support"><a class="header" href="#language-support">Language Support</a></h1>
+<p>Carbonyl URL Minifier API offers comprehensive language support, allowing developers to seamlessly integrate URL minification functionality into their projects using their preferred programming language. Below is a list of languages supported by Carbonyl:</p>
+<ul>
+<li><strong>cURL</strong>: Carbonyl provides support for cURL, allowing developers to interact with the API using command-line tools and scripts.</li>
+<li><strong>C</strong>: Developers can utilize Carbonyl in C programming language by making HTTP requests to the API endpoint and handling the response accordingly.</li>
+<li><strong>C#</strong>: Carbonyl offers support for C#, enabling developers to easily integrate URL minification functionality into their .NET applications.</li>
+<li><strong>Clojure</strong>: With Carbonyl's support for Clojure, developers can leverage the API's capabilities within their Clojure projects for efficient URL minification.</li>
+<li><strong>Go</strong>: Carbonyl provides a dedicated package for Go, allowing developers to seamlessly incorporate URL minification into their Go applications.</li>
+<li><strong>JavaScript</strong>: Carbonyl supports JavaScript, enabling developers to interact with the API using JavaScript-based applications and frameworks.</li>
+<li><strong>Kotlin</strong>: Developers can integrate Carbonyl's URL minification functionality into their Kotlin projects, enhancing the efficiency of their applications.</li>
+<li><strong>Node.js</strong>: Carbonyl offers a dedicated Node.js package, making it simple for Node.js developers to utilize URL minification capabilities within their applications.</li>
+<li><strong>PHP</strong>: Carbonyl provides support for PHP, allowing developers to easily integrate URL minification functionality into their PHP-based projects.</li>
+<li><strong>Python</strong>: Developers can leverage Carbonyl's Python package, enabling seamless integration of URL minification into their Python applications.</li>
+<li><strong>Ruby</strong>: Carbonyl offers support for Ruby, enabling developers to incorporate URL minification functionality into their Ruby-based projects effortlessly.</li>
+</ul>
+<p>Regardless of the programming language you choose, Carbonyl's comprehensive language support ensures that you can integrate URL minification seamlessly and efficiently into your applications, making them more user-friendly and aesthetically pleasing.</p>
+<p>Please refer to Carbonyl's documentation for detailed instructions and code examples for each supported language.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="curl"><a class="header" href="#curl">cURl</a></h1>
+<h2 id="minify"><a class="header" href="#minify">Minify</a></h2>
+<pre><code class="language-sh">curl  -X POST \
+  'https://carbonyl.onrender.com/api/v2/minify' \
+  --header 'Accept: */*' \
+  --header 'User-Agent: Thunder Client (https://www.thunderclient.com)' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+  &quot;url&quot;:&quot;&lt;url-goes-here&gt;&quot;
+}'
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="c-lang"><a class="header" href="#c-lang">C lang</a></h1>
+<!--about the c lang here-->
+<h2 id="minify-1"><a class="header" href="#minify-1">Minify</a></h2>
+<pre><code class="language-c">CURL *hnd = curl_easy_init();
+
+curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, &quot;POST&quot;);
+curl_easy_setopt(hnd, CURLOPT_URL, &quot;https://carbonyl.onrender.com/api/v2/minify&quot;);
+
+struct curl_slist *headers = NULL;
+headers = curl_slist_append(headers, &quot;Accept: */*&quot;);
+headers = curl_slist_append(headers, &quot;Content-Type: application/json&quot;);
+curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
+
+curl_easy_setopt(hnd, CURLOPT_POSTFIELDS, &quot;{\n  \&quot;url\&quot;:\&quot;&lt;url-to-minify&gt;\&quot;\n}&quot;);
+
+CURLcode ret = curl_easy_perform(hnd);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="c"><a class="header" href="#c">C#</a></h1>
+<h2 id="minify-2"><a class="header" href="#minify-2">Minify</a></h2>
+<pre><code class="language-c#">var client = new HttpClient();
+var request = new HttpRequestMessage();
+request.RequestUri = new Uri(&quot;https://carbonyl.onrender.com/api/v2/minify&quot;);
+request.Method = HttpMethod.Post;
+
+request.Headers.Add(&quot;Accept&quot;, &quot;*/*&quot;);
+
+var bodyString = &quot;{  \&quot;url\&quot;:\&quot;&lt;url-goes-here&gt;\&quot;}&quot;;
+var content = new StringContent(bodyString, Encoding.UTF8, &quot;application/json&quot;);
+request.Content = content;
+
+var response = await client.SendAsync(request);
+var result = await response.Content.ReadAsStringAsync();
+Console.WriteLine(result);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clojure"><a class="header" href="#clojure">Clojure</a></h1>
+<h2 id="minify-3"><a class="header" href="#minify-3">Minify</a></h2>
+<pre><code class="language-clojure">(require '[clj-http.client :as client])
+
+(client/post &quot;https://carbonyl.onrender.com/api/v2/minify&quot; {:headers {:Accept &quot;*/*&quot;}
+:content-type :json
+:form-params {:url &quot;&lt;url-goes-here&gt;&quot;}})
+</code></pre>
+<pre><code>
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="go-lang"><a class="header" href="#go-lang">Go lang</a></h1>
+<h2 id="minify-4"><a class="header" href="#minify-4">Minify</a></h2>
+<pre><code class="language-go">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;strings&quot;
+	&quot;net/http&quot;
+	&quot;io/ioutil&quot;
+)
+
+func main() {
+
+	url := &quot;https://carbonyl.onrender.com/api/v2/minify&quot;
+
+	payload := strings.NewReader(&quot;{\n  \&quot;url\&quot;:\&quot;&lt;url-goes-here&gt;\&quot;\n}&quot;)
+
+	req, _ := http.NewRequest(&quot;POST&quot;, url, payload)
+
+	req.Header.Add(&quot;Accept&quot;, &quot;*/*&quot;)
+	req.Header.Add(&quot;Content-Type&quot;, &quot;application/json&quot;)
+
+	res, _ := http.DefaultClient.Do(req)
+
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+
+	fmt.Println(res)
+	fmt.Println(string(body))
+
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
+<h2 id="minify-5"><a class="header" href="#minify-5">Minify</a></h2>
+<pre><code class="language-js">let headersList = {
+  Accept: &quot;*/*&quot;,
+  &quot;Content-Type&quot;: &quot;application/json&quot;,
+};
+
+let bodyContent = JSON.stringify({
+  url: &quot;&lt;url-goes-here&gt;&quot;,
+});
+
+let response = await fetch(&quot;https://carbonyl.onrender.com/api/v2/minify&quot;, {
+  method: &quot;POST&quot;,
+  body: bodyContent,
+  headers: headersList,
+});
+
+let data = await response.text();
+console.log(data);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kotlin"><a class="header" href="#kotlin">Kotlin</a></h1>
+<h2 id="minify-6"><a class="header" href="#minify-6">Minify</a></h2>
+<pre><code class="language-kotlin">
+val client = OkHttpClient()
+
+val mediaType = MediaType.parse(&quot;application/json&quot;)
+val body = RequestBody.create(mediaType, &quot;{\n \&quot;url\&quot;:\&quot;&lt;url-goes-here&gt;\&quot;\n}&quot;)
+val request = Request.Builder()
+.url(&quot;https://carbonyl.onrender.com/api/v2/minify&quot;)
+.post(body)
+.addHeader(&quot;Accept&quot;, &quot;_/_&quot;)
+.addHeader(&quot;Content-Type&quot;, &quot;application/json&quot;)
+.build()
+
+val response = client.newCall(request).execute()
+
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="nodejs"><a class="header" href="#nodejs">Node.js</a></h1>
+<pre><code class="language-js">const http = require(&quot;http&quot;);
+
+const options = {
+  method: &quot;POST&quot;,
+  hostname: &quot;localhost&quot;,
+  port: &quot;3030&quot;,
+  path: &quot;/api/v2/minify&quot;,
+  headers: {
+    Accept: &quot;*/*&quot;,
+    &quot;Content-Type&quot;: &quot;application/json&quot;,
+  },
+};
+
+const req = http.request(options, function (res) {
+  const chunks = [];
+
+  res.on(&quot;data&quot;, function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on(&quot;end&quot;, function () {
+    const body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+});
+
+req.write(JSON.stringify({ url: &quot;&lt;url-goes-here&gt;&quot; }));
+req.end();
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="php"><a class="header" href="#php">PHP</a></h1>
+<h2 id="minify-7"><a class="header" href="#minify-7">Minify</a></h2>
+<pre><code class="language-php">&lt;?php
+
+use Illuminate\Support\Facades\Http;
+
+$response = Http::withBody(
+        '{
+  &quot;url&quot;:&quot;&lt;url-goes-here&gt;&quot;
+}', 'json'
+    )
+    -&gt;withHeaders([
+        'Accept'=&gt; '*/*',
+        'User-Agent'=&gt; 'Thunder Client (https://www.thunderclient.com)',
+        'Content-Type'=&gt; 'application/json',
+    ])
+    -&gt;post('https://carbonyl.onrender.com/api/v2/minify');
+
+echo $response-&gt;body();
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="python"><a class="header" href="#python">Python</a></h1>
+<p>Get started with using <a href="https://github.com/opeolluwa/carbonyl">Carbonyl API</a> in your Python project.</p>
+<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
+<ul>
+<li><a href="py/python.html#health-check">Health Check</a></li>
+<li><a href="py/python.html#minify-url">Minify URL</a></li>
+<li><a href="py/python.html#url-stat">Get URL statistics</a></li>
+<li><a href="py/python.html#update-original-url">Update Original URL</a></li>
+<li><a href="py/python.html#update-id">Update ID</a></li>
+<li><a href="py/python.html#delete-url">Delete URL</a></li>
+</ul>
+<h3 id="health-check"><a class="header" href="#health-check">Health Check</a></h3>
+<p>The Health check allow you to very the status of our API, this is done by making a <code>GET</code> request to the base URL</p>
+<pre><code class="language-py">import http.client
+
+conn = http.client.HTTPSConnection(&quot;carbonyl.onrender.com&quot;)
+
+headersList = {
+ &quot;Accept&quot;: &quot;*/*&quot;,
+}
+
+payload = &quot;&quot;
+
+conn.request(&quot;GET&quot;, &quot;/&quot;, payload, headersList)
+response = conn.getresponse()
+result = response.read()
+
+print(result.decode(&quot;utf-8&quot;))
+
+</code></pre>
+<h3 id="minify-url"><a class="header" href="#minify-url">Minify URL</a></h3>
+<p>The minify URL request is made to the <code>/api/&lt;version&gt;/minify</code> endpoint, via a <code>POST</code> request. See example implementation below</p>
+<pre><code class="language-py">import http.client
+import json
+
+conn = http.client.HTTPSConnection(&quot;carbonyl.onrender.com&quot;)
+
+headersList = {
+ &quot;Accept&quot;: &quot;*/*&quot;,
+ &quot;Content-Type&quot;: &quot;application/json&quot;
+}
+
+payload = json.dumps({
+  &quot;url&quot;:&quot;https://google.com&quot; # replace with your url
+})
+
+conn.request(&quot;POST&quot;, &quot;/api/v2/minify&quot;, payload, headersList)
+response = conn.getresponse()
+result = response.read()
+
+print(result.decode(&quot;utf-8&quot;))
+</code></pre>
+<h3 id="get-the-url-statistics"><a class="header" href="#get-the-url-statistics">Get the URL statistics</a></h3>
+<p>For an existing shortened link, see the visitation count and the date the last visit wa made</p>
+<pre><code class="language-py">
+import http.client
+import json
+
+conn = http.client.HTTPSConnection(&quot;carbonyl.onrender.com&quot;)
+
+headersList = {
+ &quot;Accept&quot;: &quot;*/*&quot;,
+ &quot;Content-Type&quot;: &quot;application/json&quot;
+}
+
+payload = json.dumps({
+  &quot;url&quot;:&quot;https://google.com&quot; # replace with your URL
+})
+
+conn.request(&quot;GET&quot;, &quot;/api/v2/minify?id=&lt;you-url-id&gt;&quot;, payload, headersList)
+response = conn.getresponse()
+result = response.read()
+
+print(result.decode(&quot;utf-8&quot;))
+</code></pre>
+<h3 id="update-original-url"><a class="header" href="#update-original-url">Update Original URL</a></h3>
+<p>To change an original url to another one use this method:</p>
+<pre><code class="language-python">import http.client
+import json
+
+conn = http.client.HTTPSConnection(&quot;carbonyl.onrender.com&quot;)
+
+headersList = {
+ &quot;Accept&quot;: &quot;*/*&quot;,
+ &quot;Content-Type&quot;: &quot;application/json&quot;
+}
+
+payload = json.dumps({
+  &quot;url&quot;:&quot;https://twitter.com&quot;, #replace with the new url
+  &quot;id&quot;:&quot;jMpmTGC2_&quot; #the url ID
+})
+
+conn.request(&quot;PUT&quot;, &quot;/api/v2/minify&quot;, payload, headersList)
+response = conn.getresponse()
+result = response.read()
+
+print(result.decode(&quot;utf-8&quot;))
+</code></pre>
+<h3 id="update-id"><a class="header" href="#update-id">Update ID</a></h3>
+<p>For a Shortened Link, you can update the random ID by setting your own, see sample request below</p>
+<pre><code class="language-python">
+import http.client
+import json
+
+conn = http.client.HTTPSConnection(&quot;carbonyl.onrender.com&quot;)
+
+headersList = {
+ &quot;Accept&quot;: &quot;*/*&quot;,
+ &quot;Content-Type&quot;: &quot;application/json&quot;
+}
+
+payload = json.dumps({
+  &quot;id&quot;:&quot;jMpmTGC2_&quot;, ## the od ID
+  &quot;customId&quot;:&quot;custom&quot; ## the new ID
+})
+
+conn.request(&quot;PUT&quot;, &quot;/api/v2/minify/set&quot;, payload, headersList)
+response = conn.getresponse()
+result = response.read()
+
+print(result.decode(&quot;utf-8&quot;))
+</code></pre>
+<h3 id="delete-url"><a class="header" href="#delete-url">Delete URL</a></h3>
+<p>To delete an existing short link use this endpoint:</p>
+<pre><code class="language-python">import http.client
+
+conn = http.client.HTTPSConnection(&quot;carbonyl.onrender.com&quot;)
+
+headersList = {
+ &quot;Accept&quot;: &quot;*/*&quot;,
+}
+
+payload = &quot;&quot;
+
+conn.request(&quot;DELETE&quot;, &quot;/api/v2/minify?id=custom&quot;, payload, headersList)
+response = conn.getresponse()
+result = response.read()
+
+print(result.decode(&quot;utf-8&quot;))
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ruby"><a class="header" href="#ruby">Ruby</a></h1>
+<h2 id="minify-8"><a class="header" href="#minify-8">Minify</a></h2>
+<pre><code class="language-rb">require 'uri'
+require 'net/http'
+
+url = URI(&quot;http://localhost:3030/api/v2/minify&quot;)
+
+http = Net::HTTP.new(url.host, url.port)
+
+request = Net::HTTP::Post.new(url)
+request[&quot;Accept&quot;] = '*/*'
+request[&quot;User-Agent&quot;] = 'Thunder Client (https://www.thunderclient.com)'
+request[&quot;Content-Type&quot;] = 'application/json'
+request.body = &quot;{\n  \&quot;url\&quot;:\&quot;&lt;url-goes-here&gt;\&quot;\n}&quot;
+
+response = http.request(request)
+puts response.read_body
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rust"><a class="header" href="#rust">Rust</a></h1>
+<p>coming soon</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
